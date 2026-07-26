@@ -257,3 +257,200 @@ body {
     color: var(--colour-secondary-ultralight);
     background: var(--colour-secondary-dark);
 }
+
+/* ============================== */
+/* RESPONSIVE PARA CELULARES      */
+/* ============================== */
+
+@media (max-width: 768px) {
+    body {
+        padding: 0.25rem;
+        align-items: flex-start;
+        min-height: 100vh;
+    }
+
+    .contenedor {
+        min-width: unset;
+        width: 100%;
+        height: auto;
+        min-height: 98vh;
+        border-radius: 0.25rem;
+        padding: 0.25rem;
+    }
+
+    /* HEADER */
+    .contenedor .header {
+        flex-direction: column;
+        max-height: none;
+        padding: 1rem 0.75rem;
+        gap: 0.75rem;
+        border-radius: 0.25rem;
+        flex-shrink: 0;
+    }
+
+    .contenedor .header img {
+        width: 4.5rem;
+        height: 4.5rem;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    .contenedor .header .professional {
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    .contenedor .header .professional .name {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .contenedor .header .professional .career {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .contenedor .header .professional .specialization {
+        font-size: 0.7rem;
+        text-align: center;
+    }
+
+    .contenedor .header .social {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .contenedor .header .social .media {
+        width: auto;
+        gap: 0.5rem;
+    }
+
+    .contenedor .header .social .media button {
+        width: 2.2rem;
+        height: 2.2rem;
+        border-radius: 50%;
+    }
+
+    .contenedor .header .social .media button i {
+        font-size: 1rem;
+    }
+
+    .contenedor .header .social .location {
+        gap: 0.25rem;
+    }
+
+    .contenedor .header .social .location span {
+        font-size: 0.7rem;
+    }
+
+    /* MAIN */
+    .contenedor .main {
+        padding: 0.5rem 0.25rem;
+        flex: 1;
+        min-height: 0;
+    }
+
+    .contenedor .main .section[state="activated"] {
+        flex-direction: column;
+        padding: 0.5rem;
+    }
+
+    .contenedor .main #sec-summary {
+        gap: 0.5rem;
+    }
+
+    .contenedor .main #sec-summary .title {
+        font-size: var(--text-size-normal);
+        height: auto;
+        padding: 0.25rem;
+    }
+
+    .contenedor .main #sec-summary .geovisor {
+        width: 100%;
+        height: 250px;
+        min-height: 200px;
+        border-radius: 0.25rem;
+    }
+
+    /* FOOTER */
+    .contenedor .footer {
+        height: auto;
+        padding: 0.5rem;
+        gap: 0.35rem;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+    }
+
+    .contenedor .footer button[state="activated"],
+    .contenedor .footer button[state="deactivated"] {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.7rem;
+        flex: 1;
+        min-width: 60px;
+        border-radius: 0.25rem;
+    }
+}
+
+/* CELULARES MUY PEQUEÑOS */
+@media (max-width: 400px) {
+    .contenedor .header img {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .contenedor .header .professional .name {
+        font-size: 1.2rem;
+    }
+
+    .contenedor .header .professional .career {
+        font-size: 0.85rem;
+    }
+
+    .contenedor .header .professional .specialization {
+        font-size: 0.6rem;
+    }
+
+    .contenedor .header .social .media button {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
+    .contenedor .header .social .media button i {
+        font-size: 0.85rem;
+    }
+
+    .contenedor .main #sec-summary .geovisor {
+        height: 180px;
+        min-height: 150px;
+    }
+
+    .contenedor .footer button[state="activated"],
+    .contenedor .footer button[state="deactivated"] {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.65rem;
+        min-width: 50px;
+    }
+}
+
+/* TABLETS PEQUEÑAS */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .contenedor {
+        min-width: unset;
+        width: 95%;
+        max-width: 100%;
+    }
+
+    .contenedor .header .professional .name {
+        font-size: 1.5rem;
+    }
+
+    .contenedor .main #sec-summary .geovisor {
+        width: 100%;
+        height: 350px;
+    }
+}
