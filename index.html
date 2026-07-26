@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Sebastián Alcántara</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="contenedor" class="contenedor">
+        <header class="header">
+            <img class="profile" src="recursos/imagenes/profile-photo.png">
+            <div class="professional">
+                <span class="name">Sebastián Alcántara</span>
+                <span class="career">Ingeniero Geógrafo</span>
+                <span class="specialization">GIS | Drenaje Pluvial | Inmobiliario</span>
+            </div>
+            <div class="social">
+                <div class="media">
+                    <button class="linkedin" onclick="window.open('https://linkedin.com/in/sebastian-alcantara', '_blank')">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </button>
+                    <button class="github" onclick="window.open('https://github.com/sebastianr-alcantara', '_blank')">
+                        <i class="fa-brands fa-github"></i>
+                    </button>
+                    <button class="mail" onclick="window.location.href='mailto:sebastianr.alcantara@gmail.com'">
+                        <i class="fa-solid fa-envelope"></i>
+                    </button>
+                </div>
+                <div class="location">
+                    <span class="material-symbols-outlined">location_on</span>
+                    <span>Lima, Perú</span>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div id="sec-summary" class="section" state="activated">
+                <span class="title">Resumen Profesional</span>
+                <div id="map-summary" class="geovisor"></div>
+            </div>
+            <div id="sec-education" class="section" state="deactivated">
+                Educacion
+            </div>
+            <div id="sec-experience" class="section" state="deactivated">
+                Experiencia
+            </div>
+        </main>
+        <footer class="footer">
+            <button id="btn-summary">Resumen</button>
+            <button id="btn-education">Educación</button>
+            <button id="btn-experience">Experiencia</button>
+        </footer>
+    </div>
+    <!-- ----------------------- -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

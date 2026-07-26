@@ -1,0 +1,259 @@
+/* ============================== */
+/* FORMATO GLOBAL DEL SISTEMA     */
+/* ============================== */
+
+:root {
+    --colour-primary-ultradark: #0D2236;
+    --colour-primary-dark: #173B5C;
+    --colour-primary: #255E91;
+    --colour-primary-light: #5F8FB8;
+    --colour-primary-ultralight: #DCEAF5;
+
+    --colour-secondary-ultradark: #1A252F;
+    --colour-secondary-dark: #2C3E50;
+    --colour-secondary: #5D6D7E;
+    --colour-secondary-light: #AEB6BF;
+    --colour-secondary-ultralight: #EAECEE;
+
+    --text-colour-title: #173B5C;
+    --text-colour-subtitle: #2E5D46;
+    --text-colour-primary: #30363C;
+    --text-colour-secondary: #727D87;
+
+    --text-size-ultrabig: 2rem;
+    --text-size-big: 1.25rem;
+    --text-size-normal: 1.00rem;
+    --text-size-small: 0.75rem;
+    --text-size-ultrasmall: 0.5rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: absolute;
+    display: flex;
+    font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* ============================== */
+/* CURRICULUM VITAE               */
+/* ============================== */
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    min-width: 50rem;
+    max-width: 70rem;
+    height: calc(100% - 1rem);
+    border: 1px solid var(--colour-secondary-text);
+    border-radius: 0.5rem;
+    background: var(--colour-secondary-ultralight);
+}
+
+/* ============================== */
+/* HEADER DEL CV                  */
+/* ============================== */
+
+.contenedor .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    max-height: 10rem;
+    padding: 1rem;
+    gap: 1rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background: var(--colour-secondary-dark);
+}
+
+.contenedor .header img {
+    display: flex;
+    width: auto;
+    height: 7rem;
+    width: 7rem;
+    border: 0;
+    border-radius: 5rem;
+}
+
+.contenedor .header .professional {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    width: 80%;    
+}
+
+.contenedor .header .professional .name {
+    display: flex;
+    color: var(--colour-primary-light);
+    font-size: var(--text-size-ultrabig);
+    font-weight: bold;
+}
+
+.contenedor .header .professional .career {
+    display: flex;
+    color: var(--colour-secondary-ultralight);
+    font-size: var(--text-size-normal);
+    font-weight: bold;
+} 
+
+.contenedor .header .professional .specialization {
+    display: flex;
+    color: var(--colour-secondary-ultralight);
+    font-size: var(--text-size-small);
+    font-weight: bold;
+} 
+
+.contenedor .header .social {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 12rem;
+    gap: 0.5rem;
+}
+
+.contenedor .header .social .media {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 0.5rem;
+}
+
+.contenedor .header .social .media button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    gap: 0;
+    border: 0;
+    border-radius: 1rem;
+}
+
+.contenedor .header .social .media button:hover {
+    transform: scale(1.1);
+}
+
+.contenedor .header .social .media button i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.contenedor .header .social .location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.contenedor .header .social .location span {
+    color: var(--colour-secondary-ultralight);
+    font-size: var(--text-size-small);
+    font-weight: bold;
+}
+
+/* ============================== */
+/* CONTENIDO PRINCIPAL DEL CV     */
+/* ============================== */
+.contenedor .main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem;
+}
+
+.contenedor .main .section[state="deactivated"] {
+    display: none;
+}
+
+.contenedor .main .section[state="activated"] {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.contenedor .main #sec-summary {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.contenedor .main #sec-summary .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    color: var(--text-colour-primary);
+    font-size: var(--text-size-normal);
+    font-weight: bold;
+}
+
+.contenedor .main #sec-summary .geovisor {
+    display: flex;
+    flex-direction: column;
+    width: 25rem;
+    height: 100%;
+    border: 0;
+    border-radius: 0.5rem;
+}
+
+/* ============================== */
+/* FOOTER DEL CV                  */
+/* ============================== */
+.contenedor .footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 5rem;
+    gap: 0.5rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background: var(--colour-secondary);
+}
+
+.contenedor .footer button[state="activated"],
+.contenedor .footer button[state="deactivated"] {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.5rem;
+    font-size: var(--text-size-small);
+    font-weight: bold;
+    border: 0;
+    border-radius: 0.5rem;
+}
+
+.contenedor .footer button[state="activated"] {
+    color: var(--colour-secondary-ultralight);
+    background: var(--colour-secondary-ultradark);
+}
+
+.contenedor .footer button:hover,
+.contenedor .footer button[state="activated"]:hover
+.contenedor .footer button[state="deactivated"]:hover {
+    color: var(--colour-secondary-ultralight);
+    background: var(--colour-secondary-dark);
+}
