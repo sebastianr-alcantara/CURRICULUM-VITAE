@@ -298,8 +298,8 @@ body {
     }
 
     .contenedor .header img {
-        width: 5rem;
-        height: 5rem;
+        width: 7rem;
+        height: 7rem;
     }
 
 
@@ -324,10 +324,7 @@ body {
         justify-content: center;
     }
 
-
-    /* ============================== */
     /* REDES SOCIALES MOBILE          */
-    /* ============================== */
 
     .contenedor .header .social {
         width: 100%;
@@ -340,6 +337,9 @@ body {
         justify-content: center;
     }
 
+    .contenedor .header .social .media button i {
+        font-size: 1rem;
+    }
 
     .contenedor .header .social .location {
         margin-top: 0.25rem;
