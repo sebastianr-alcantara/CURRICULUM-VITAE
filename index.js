@@ -146,7 +146,7 @@ function initializeSummaryModal() {
     function showSummaryModal(departamento, provincias, feature) {
         summaryModalContainer.style.position = 'absolute';
         summaryModalContainer.style.display = 'flex';
-        summaryModalTitle.textContent = `${'Departamento de ' + departamento}`;
+        summaryModalTitle.textContent = `${'DEPARTAMENTO DE ' + departamento.toUpperCase()}`;
         
         // Mostramos todas las provincias con experiencia
         summaryModalBody.innerHTML = '';
@@ -180,7 +180,7 @@ function initializeSummaryModal() {
             {
                 style: {
                     color: '#000000',
-                    weight: 4,
+                    weight: 2,
                     fillColor: 'transparent',
                     fillOpacity: 0
                 }
@@ -208,7 +208,7 @@ function initializeSummaryModal() {
                     return {
                         color: '#0D2236',
                         weight: 1, 
-                        fillColor: verificarNombreProvincia ? '#173B5C' : '#255E91',
+                        fillColor: verificarNombreProvincia ? '#2C3E50' : '#EAECEE',
                         fillOpacity: verificarNombreProvincia ? 0.7 : 0.3
                     };
                 },
