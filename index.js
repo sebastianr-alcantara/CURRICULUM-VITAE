@@ -13,6 +13,8 @@ function initializeMapSummary() {
         'map-summary', 
         {
             center: [-9.19, -75.0152],
+            zoomSnap: 5,
+            zoomDelta: 5,
             dragging: false,
             scrollWheelZoom: false,
             zoomControl: false,
@@ -23,11 +25,17 @@ function initializeMapSummary() {
     // Inicializamos el modal antes de usarlo
     summaryModalControl = initializeSummaryModal();
 
+    // Asignamos mi resumen profesional
+    var acercaDeMiContenedor = document.querySelector('.about-me'); 
+    var acercaDeMiTexto = information.summary[0];
+
+    acercaDeMiContenedor.insertAdjacentHTML('beforeend', acercaDeMiTexto);
+
     // Determinamos los departamentos con experiencia
-    informacion.experience.forEach(
+    information.experience.forEach(
         function(experiencia) {
-            if (!departamentosExperiencia.includes(experiencia.departamento)) {
-                departamentosExperiencia.push(experiencia.departamento)
+            if (!departamentosExperiencia.includes(experiencia.department)) {
+                departamentosExperiencia.push(experiencia.department)
             }
         }
     );
@@ -40,9 +48,9 @@ function initializeMapSummary() {
                 var nombreDepartamentoGeojson = feature.properties.nombdep; // Obtenemos el nombre del departamento
                 var verificarNombreDepartamento = departamentosExperiencia.includes(nombreDepartamentoGeojson) // Verificamos el nombre del departamento
                 return {
-                    color: '#0D2236',
+                    color: 'var(--colour-primary-ultradark)',
                     weight: 1,
-                    fillColor: verificarNombreDepartamento ? '#173B5C' : '#255E91', // Oscuro cuando hay experiencia
+                    fillColor: verificarNombreDepartamento ? 'var(--colour-primary-dark)' : 'var(--colour-primary-ultralight)', // Oscuro cuando hay experiencia
                     fillOpacity: verificarNombreDepartamento ? 0.7 : 0.2
                 }
             },
@@ -60,10 +68,10 @@ function initializeMapSummary() {
                         }
                         // Buscamos todas las provincias con experiencia
                         var provinciasExperiencia = [];
-                        informacion.experience.forEach(
+                        information.experience.forEach(
                                 function(experiencia) {
-                                    if (experiencia.departamento === nombreDepartamento) {
-                                        experiencia.provincia.forEach(
+                                    if (experiencia.department === nombreDepartamento) {
+                                        experiencia.province.forEach(
                                             function(provincia) {
                                                 if (!provinciasExperiencia.includes(provincia)) {
                                                     provinciasExperiencia.push(provincia);
@@ -94,26 +102,29 @@ function initializeMapSummary() {
                         }
                     }
                 );
-                // Efecto Hover
-                layer.on(
-                    'mouseover',
-                    function() {
-                        if (featureSelected != this) {
-                            this.setStyle({
-                                weight: 2
-                            });
-                        }    
-                    }
-                );
-                layer.on(
-                    'mouseout',
-                    function() {
-                        if (featureSelected != this) {
-                            var defaultStyleFeature = getDefaultStyle(feature);
-                            this.setStyle(defaultStyleFeature);
+                // Efecto Hover solo para los departamentos con experiencia
+                if (haveExperience) {
+                    layer.on(
+                        'mouseover',
+                        function() {
+                            if (featureSelected != this) {
+                                this.setStyle({
+                                    weight: 4
+                                });
+                            }    
                         }
-                    }
-                );
+                    );
+                    layer.on(
+                        'mouseout',
+                        function() {
+                            if (featureSelected != this) {
+                                var defaultStyleFeature = getDefaultStyle(feature);
+                                this.setStyle(defaultStyleFeature);
+                            }
+                        }
+                    );
+                }
+
             }
         }
     ).addTo(summaryMap);
@@ -122,37 +133,23 @@ function initializeMapSummary() {
 };
 
 function initializeSummaryModal() {
-    // Creamos la estructura del modal en HTML
-    var modalSummaryHTML = `
-        <div class="summary-modal" style="display: none;">
-            <div class="modal-header">
-                <div class="departamento"></div>
-                <span class="material-symbols-outlined">cancel</span>
-            </div>
-            <div class="modal-body"></div>
-        </div>
-    `;
-    // Seleccionamos el contenedor padre del modal
-    var mapContainer = document.querySelector('.map');
-    mapContainer.insertAdjacentHTML('beforeend', modalSummaryHTML)
-
     // Seleccionamos los elementos del modal que son configurables
     var summaryModalContainer = document.querySelector('.summary-modal');
-    var summaryModalTitle = summaryModalContainer.querySelector('.departamento');
-    var summaryModalCloseButton = summaryModalContainer.querySelector('.material-symbols-outlined');
     var summaryModalBody = summaryModalContainer.querySelector('.modal-body');
 
     // Funcion para mostrar el modal
     function showSummaryModal(departamento, provincias, feature) {
-        summaryModalContainer.style.position = 'absolute';
+        summaryModalContainer.style.position = 'relative';
         summaryModalContainer.style.display = 'flex';
-        summaryModalTitle.textContent = `${'DEPARTAMENTO DE ' + departamento.toUpperCase()}`;
         
         // Mostramos todas las provincias con experiencia
         summaryModalBody.innerHTML = '';
 
         summaryModalBody.innerHTML += `
-            <div class="provincia">
+            <div class="place-work">
+                <strong>Departamento:&nbsp;</strong>${departamento}
+            </div>
+            <div class="place-work">
                 <strong>Provincia:&nbsp;</strong>${provincias.join(', ')}
             </div>
             <div id="province-map-summary" class="geovisor"></div>
@@ -163,6 +160,8 @@ function initializeSummaryModal() {
             'province-map-summary', 
             {
                 center: [-9.19, -75.0152],
+                zoomSnap: 0.4,
+                zoomDelta: 0.4,
                 dragging: false,
                 scrollWheelZoom: false,
                 zoomControl: false,
@@ -179,7 +178,7 @@ function initializeSummaryModal() {
             feature,
             {
                 style: {
-                    color: '#000000',
+                    color: 'var(--colour-primary-ultradark)',
                     weight: 2,
                     fillColor: 'transparent',
                     fillOpacity: 0
@@ -206,36 +205,35 @@ function initializeSummaryModal() {
                     var verificarNombreProvincia = provincias.includes(nombreProvinciaGeojson);
 
                     return {
-                        color: '#0D2236',
+                        color: 'var(--colour-primary-ultradark)',
                         weight: 1, 
-                        fillColor: verificarNombreProvincia ? '#2C3E50' : '#EAECEE',
-                        fillOpacity: verificarNombreProvincia ? 0.7 : 0.3
+                        fillColor: verificarNombreProvincia ? 'var(--colour-primary-dark)' : 'var(--colour-primary-ultralight)',
+                        fillOpacity: verificarNombreProvincia ? 0.7 : 0.2
                     };
                 },
             }
-        ).addTo(provinceSummaryMap);
+        )
+        
+        provincesSelectedLayer.addTo(provinceSummaryMap);
 
         // Ajustamos el mapa al departamento seleccionado
-        provinceSummaryMap.fitBounds(departamentSelectedLayer.getBounds());
+        provinceSummaryMap.fitBounds(
+            provincesSelectedLayer.getBounds()
+        );
+
+        summaryMap.invalidateSize();
     }
 
     // Funcion para ocultar el modal
     function hideSummaryModal() {
+        var bounds = summaryMap.getBounds();
         summaryModalContainer.style.display = 'none';
+        summaryMap.invalidateSize();
+        
+        setTimeout(function() {
+            summaryMap.fitBounds(bounds);
+        }, 500);
     }
-
-    // Agregamos el evento de mostrar y cerrar el modal
-    summaryModalCloseButton.addEventListener(
-        'click', 
-        function() {
-            if (featureSelected) {
-                var defaultStyleFeature = getDefaultStyle(featureSelected.feature);
-                featureSelected.setStyle(defaultStyleFeature);
-                featureSelected = null
-            }
-            summaryModalControl.hide();
-        }
-    );
 
     // Retornamos las funciones
     return {
@@ -290,9 +288,9 @@ function getDefaultStyle(feature) {
     var tieneExperiencia = departamentosExperiencia.includes(nombre);
     
     return {
-        color: '#0D2236',
+        color: 'var(--colour-primary-ultradark)',
         weight: 1,
-        fillColor: tieneExperiencia ? '#173B5C' : '#255E91',
+        fillColor: tieneExperiencia ? 'var(--colour-primary-dark)' : 'var(--colour-primary-ultralight)',
         fillOpacity: tieneExperiencia ? 0.7 : 0.2
     };
 }
